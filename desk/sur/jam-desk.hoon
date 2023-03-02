@@ -1,10 +1,17 @@
 |%
-+$  data  ships=(list ship)
++$  data  [=staged dest=(unit [mode=?(%n %m) =desk])]
++$  mapp  (map path page:clay)
++$  staged
+  %-  unit
+  $:  =stage=time
+      =stage=desk
+      =stage=mapp
+  ==
 +$  eyre-id  @ta
 +$  action
-  $%  [%do-a-thing *]
-      [%do-another *]
-      [%add-ship =ship]
-      [%create-desk =desk =jam]
+  $%  [%stage-mapp =desk =mapp]
+      [%set-dest mode=?(%n %m) =desk]
+      [%new-desk ~]
+      [%add-files ~]
   ==
 --
