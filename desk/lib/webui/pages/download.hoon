@@ -22,7 +22,7 @@
 ::
 ++  download-jamfile
   ^-  marl
-  :~  ;h1: Download a Desk
+  :~  ;h2: download jamfile
       ;p: Download a desk from your ship to your computer.
       ;p
         Click on the desk name to select a subset of

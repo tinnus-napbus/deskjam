@@ -10,6 +10,7 @@
 +$  eyre-id  @ta
 +$  action
   $%  [%stage-mapp =desk =mapp]
+      [%url-thread url=@t]
       [%set-dest mode=?(%n %m) =desk]
       [%new-desk ~]
       [%add-files ~]

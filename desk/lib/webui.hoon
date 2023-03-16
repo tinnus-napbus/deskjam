@@ -27,7 +27,11 @@
     |=  [headers=header-list:http body=(unit octs)]
     ^-  $@(brief:rudder action)
     =/  parts  (de-request:multipart headers body)
-    ?~  parts  ~
+    ?~  parts
+      =/  args=(map @t @t)
+        ?~(body ~ (frisk:rudder q.u.body))
+      ?~  url=(~(get by args) 'url')  ~
+      url-thread+u.url
     =/  jam=(unit jam)
       %-  lint:hc
       ^-  (list jam)
@@ -38,7 +42,7 @@
         %file  [~ `jam`body:p]
       ==
     ?~  jam   ~
-    stage-mapp+(,[desk mapp] (cue u.jam))
+    stage-mapp+(cue-and-clam:hc u.jam)
   ::
   ++  final
     %+  alert:rudder

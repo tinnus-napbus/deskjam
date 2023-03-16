@@ -16,6 +16,8 @@
       ;style:"{(trip global:sty)}"
     ==
     ;body
+      ;a/"/apps/jam-desk/download": downloads page
+      ;br;
       ;*  upload-jamfile
     ==
   ==
@@ -23,7 +25,7 @@
 ++  upload-jamfile
   ^-  marl 
   :~  ;h2: upload jamfile
-      ;p: Upload a desk jamfile from your computer.
+      ;p: Upload a desk jamfile from your computer or from a url.
       ;table
         ;form
           =method   "post"
@@ -40,6 +42,25 @@
                 =type         "submit"
                 =name         "action"
                 =value        "submit-file"
+                submit
+              ==
+            ==
+          ==
+        ==
+        ;form
+          =method   "post"
+          ;tr
+            ;td
+              ;input
+                =type         "text"
+                =name         "url"
+                =placeholder  "https://www.example.com";
+            ==
+            ;td
+              ;button
+                =type         "submit"
+                =name         "action"
+                =value        "submit-url"
                 submit
               ==
             ==

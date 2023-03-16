@@ -1,8 +1,18 @@
+/-  *jam-desk
 /+  multipart
 |_  [our=ship now=time]
 ++  en-beak  |=(dap=term /(scot %p our)/[dap]/(scot %da now))
 ++  jam-to-mime  .^($-(@ mime) %cf (welp (en-beak %base) /jam/mime))
 ++  desks  .^((set desk) %cd (en-beak %base))
+::
+++  cue-and-clam
+  |=  =jam
+  ^-  [desk mapp]
+  =/  =(cask)  ((cask) (cue jam))
+  ?+    p.cask  !!
+      %jam-desk-0
+    (,[desk mapp] q.cask)
+  ==
 :: list to unit
 ::
 ++  lint
@@ -44,24 +54,6 @@
     %-  flop
     :_  (oust [0 2] (flop path))
     (crip :(weld nam "/" ext))
-  --
-::
-++  mapp-full  |=(=desk (mapp desk (desk-files desk)))
-::
-++  mapp
-  |=  [=desk files=(list path)]
-  ^-  (map path page:clay)
-  |^
-  =|  =mapp
-  (~(gas by mapp) (turn files mage))
-  ++  mage
-    |=  file=path
-    ^-  (pair path page:clay)
-    :-  file
-    ^-  page:clay
-    :-  (rear file)
-    ~|  [%missing-source-file desk file]
-    .^(* %cx (weld (en-beak desk) file))
   --
 ::
 ++  get-desk-hier
