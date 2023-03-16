@@ -59,7 +59,8 @@
           ==
         ==
       ==
-      ;h1: staged files
+      ;h2: staged files
+      ;p: (If loaded from url, you may want to refresh.)
       ;*  folder-hierarchy
     ==
   ==
