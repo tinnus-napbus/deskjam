@@ -35,7 +35,7 @@
               ;input
                 =type         "file"
                 =name         "file"
-                =accept       ".jam";
+                =accept       ".deskjam";
             ==
             ;td
               ;button

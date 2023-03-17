@@ -28,7 +28,7 @@
           Select files and folders to jam.
         ==
         ;td
-          ;button(type "submit", download "{(trip desk)}.jam"): download
+          ;button(type "submit", download "{(trip desk)}.deskjam"): download
         ==
       ==
       ;*  folder-hierarchy

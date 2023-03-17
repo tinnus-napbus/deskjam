@@ -1,5 +1,6 @@
 /-  *jam-desk
 /+  rudder, multipart, w=webui-pages, h=jam-desk
+/$  deskjam-to-deskpack-0  %deskjam  %deskpack-0
 |%
 ++  path-to-term
   |=  =path
@@ -31,7 +32,7 @@
       =/  args=(map @t @t)
         ?~(body ~ (frisk:rudder q.u.body))
       ?~  url=(~(get by args) 'url')  ~
-      url-thread+u.url
+      [%url-thread u.url]
     =/  jam=(unit jam)
       %-  lint:hc
       ^-  (list jam)
@@ -42,7 +43,7 @@
         %file  [~ `jam`body:p]
       ==
     ?~  jam   ~
-    stage-mapp+(cue-and-clam:hc u.jam)
+    [%stage-mapp (deskjam-to-deskpack-0 u.jam)]
   ::
   ++  final
     %+  alert:rudder

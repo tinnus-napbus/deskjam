@@ -1,6 +1,7 @@
 |%
 +$  data  [=staged dest=(unit [mode=?(%n %m) =desk])]
 +$  mapp  (map path page:clay)
++$  deskpack  [desk mapp]
 +$  staged
   %-  unit
   $:  =stage=time

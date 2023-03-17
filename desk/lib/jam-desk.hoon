@@ -1,18 +1,9 @@
 /-  *jam-desk
 /+  multipart
 |_  [our=ship now=time]
-++  en-beak  |=(dap=term /(scot %p our)/[dap]/(scot %da now))
-++  jam-to-mime  .^($-(@ mime) %cf (welp (en-beak %base) /jam/mime))
-++  desks  .^((set desk) %cd (en-beak %base))
-::
-++  cue-and-clam
-  |=  =jam
-  ^-  [desk mapp]
-  =/  =(cask)  ((cask) (cue jam))
-  ?+    p.cask  !!
-      %jam-desk-0
-    (,[desk mapp] q.cask)
-  ==
+++  sour  (scot %p our)
+++  snow  (scot %da now)
+++  desks  .^((set desk) %cd /[sour]/base/[snow])
 :: list to unit
 ::
 ++  lint
@@ -32,7 +23,7 @@
   ?.  =(key n)  ~
   [~ `mold`body:p]
 ::
-++  desk-files  |=(=desk .^((list path) %ct (en-beak desk)))
+++  desk-files  |=(=desk .^((list path) %ct /[sour]/[desk]/[snow]))
 ::
 ++  desk-axal
   |=  =desk

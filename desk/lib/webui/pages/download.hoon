@@ -39,7 +39,7 @@
               ;td
                 ;a/"/apps/jam-desk/download/{(trip desk)}"
                   =id  "download"
-                  =download  "{(trip desk)}.jam"
+                  =download  "{(trip desk)}.deskjam"
                   =title  "download this file"
                   ; ⬇️
                 ==

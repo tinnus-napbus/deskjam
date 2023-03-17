@@ -2,8 +2,12 @@
 /+  webui, rudder, server, dbug, verb, default-agent,
     j=jam-desk
 :: import to force compilation during development
-/=  j-  /mar/jam-desk-0
-/$  jam-to-mime  %jam  %mime
+/=  dj-  /mar/deskjam
+/=  dp-  /mar/deskpack-0
+/=  jt-  /ted/jam-desk-url
+::
+/$  deskpack-0-to-mime  %deskpack-0  %mime
+/$  deskjam-to-deskpack-0  %deskjam  %deskpack-0
 ::
 |%
 +$  state-0   [%0 data]
@@ -137,7 +141,7 @@
     =/  =jam  !<(jam result)
     :_  this
     :~  :*  %pass  /  %agent  [our dap]:bowl  %poke 
-            %jam-desk-action  !>(stage-mapp+(cue-and-clam:jc jam))
+            %jam-desk-action  !>([%stage-mapp (deskjam-to-deskpack-0 jam)])
     ==  ==
   ==
 ::
@@ -147,14 +151,7 @@
 |_  =bowl:gall
 ++  sour  (scot %p our.bowl)
 ++  snow  (scot %da now.bowl)
-++  jam-mark  %jam-desk-0
 ++  desks  .^((set desk) %cd /[sour]/base/[snow])
-::
-:: ++  jam-to-mime
-::   |=  =beak
-::   .^  $-(@ mime)  %cf
-::     (weld (en-beam beak(q %base) ~) /jam/mime)
-::   ==
 ::
 ++  new-desk-card
   |=  [=desk =mapp]
@@ -200,18 +197,6 @@
 ::
 ++  en-mapp
   |=  [=desk files=(list path)]
-::  ^-  mapp
-::  |^
-::  (~(gas by *mapp) (turn files mage))
-::  ++  mage
-::    |=  file=path
-::    ^-  (pair path page:clay)
-::    :-  file
-::    ^-  page:clay
-::    :-  (rear file)
-::    ~|  [%missing-source-file beak file]
-::    .^(* %cx (weld (en-beam beak ~) file))
-::  --
   ^-  mapp
   =+  .^(=dome:clay %cv /[sour]/[desk]/[snow])
   =/  commit=@ud  ud:.^(cass:clay %cw /[sour]/[desk]/[snow])
@@ -239,9 +224,8 @@
 ++  desk-to-mime
   |=  =desk
   ^-  mime
-  %-  jam-to-mime
-  %-  jam  ^-  (cask)
-  [jam-mark desk (en-mapp-full desk)]
+  %-  deskpack-0-to-mime
+  [desk (en-mapp-full desk)]
 ::
 ++  file-args
   |=  args=(list [k=@t v=@t])
@@ -254,9 +238,8 @@
 ++  subdesk-to-mime
   |=  [=desk files=(list path)]
   ^-  mime
-  %-  jam-to-mime
-  %-  jam  ^-  (cask)
-  [jam-mark desk (en-mapp-part desk files)]
+  %-  deskpack-0-to-mime
+  [desk (en-mapp-part desk files)]
 ::
 ++  simple-desk-jam
   |=  [=eyre-id =desk]
