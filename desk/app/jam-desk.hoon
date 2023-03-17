@@ -3,154 +3,11 @@
     j=jam-desk
 :: import to force compilation during development
 /=  j-  /mar/jam-desk-0
+/$  jam-to-mime  %jam  %mime
 ::
 |%
 +$  state-0   [%0 data]
 +$  card      card:agent:gall
-++  jam-mark  %jam-desk-0
-++  desks     |=(=beak .^((set desk) %cd (en-beam beak ~)))
-::
-++  jam-to-mime
-  |=  =beak
-  .^  $-(@ mime)  %cf
-    (weld (en-beam beak(q %base) ~) /jam/mime)
-  ==
-::
-++  new-desk-card
-  |=  [=desk =mapp]
-  ^-  card
-  [%pass /new-desk/[desk] %arvo (new-desk:cloy desk ~ mapp)]
-::
-++  add-files-card
-  |=  [=mapp to=desk conflict=(set path)]
-  ^-  card
-  =;  =soba:clay
-    [%pass /put-files/[to] %arvo %c %info to %& soba]
-  %+  turn  ~(tap by mapp)
-  |=  [=path =mark cont=*]
-  ?:  (~(has in conflict) path)
-    [path %mut mark !>(cont)]
-  [path %ins mark !>(cont)]
-::
-++  run-url-thread-card
-  |=  url=@t
-  ^-  card
-  :*  %pass  /url-thread  %arvo  %k  %fard
-      %jam-desk  %jam-desk-url  %noun
-      !>((some url))
-  ==
-::
-++  desk-files
-  |=  =beak
-  ^-  (set path)
-  %-  ~(gas in *(set path))
-  .^((list path) %ct (en-beam beak ~))
-::
-++  page-paths
-  |=  =beak
-  ^-  (list path)
-  =/  subsets
-    (turn ~(tap in (desks beak)) |=(=@ta [%subset ta ~]))
-  %+  welp
-    subsets
-  ~[/index /staged /confirm /download]
-::
-++  make-pages
-  |=  =beak
-  %-  ~(gas by *(map @ta (page:rudder data action)))
-  (turn (page-paths beak) make-page:webui)
-::
-++  en-mapp
-  |=  [=beak files=(list path)]
-::  ^-  mapp
-::  |^
-::  (~(gas by *mapp) (turn files mage))
-::  ++  mage
-::    |=  file=path
-::    ^-  (pair path page:clay)
-::    :-  file
-::    ^-  page:clay
-::    :-  (rear file)
-::    ~|  [%missing-source-file beak file]
-::    .^(* %cx (weld (en-beam beak ~) file))
-::  --
-  ^-  mapp
-  =+  .^(=dome:clay %cv (en-beam beak ~))
-  =/  commit=@ud
-    ?-  r.beak
-      [%ud @]   p.r.beak
-      [%tas @]  (~(got by lab.dome) p.r.beak)
-      [%da @]   ud:.^(cass:clay %cw (en-beam beak /))
-    ==
-  =/  =tako:clay  (~(got by hit.dome) commit)
-  =+  .^(=yaki:clay %cs (en-beam beak(q %base) /yaki/(scot %uv tako)))
-  =/  case
-    ?-  -.r.beak
-      %da   (scot %da p.r.beak)
-      %tas  (scot %tas p.r.beak)
-      %ud   (scot %ud p.r.beak)
-    ==
-  ~&  %before-rang
-  =+  .^(=rang:clay %cx (en-beam beak(q %$) /rang))
-  ~&  %after-rang
-  %-  ~(gas by *mapp)
-  %+  turn  files
-  |=  file=path
-  ^-  (pair path page:clay)
-  ~|  [%missing-source-file beak file]
-  :-  file
-  (~(got by lat.rang) (~(got by q.yaki) file))
-::
-++  en-mapp-full
-  |=(=beak (en-mapp beak ~(tap in (desk-files beak))))
-::
-++  en-mapp-part
-  |=  [=beak files=(list path)]
-  %+  en-mapp  beak
-  %+  murn  files
-  |=  file=path
-  ?.((~(has in (desk-files beak)) file) ~ (some file))
-::
-++  desk-to-mime
-  |=  =beak
-  %-  (jam-to-mime beak)
-  %-  jam  ^-  (cask)
-  [jam-mark q.beak (en-mapp-full beak)]
-::
-++  file-args
-  |=  args=(list [k=@t v=@t])
-  ^-  (list path)
-  %+  turn  args
-  |=  [k=@t v=@t]
-  ^-  path
-  +:(rash k stap)
-::
-++  subdesk-to-mime
-  |=  [=beak files=(list path)]
-  %-  (jam-to-mime beak)
-  %-  jam  ^-  (cask)
-  [jam-mark q.beak (en-mapp-part beak files)]
-::
-++  simple-desk-jam
-  |=  [=eyre-id =beak]
-  ^-  (list card)
-  =/  jamm  (desk-to-mime beak)
-  %+  give-simple-payload:app:server  eyre-id
-  :_  [~ q.jamm]
-  [200 ['content-type'^(en-mite:mimes:html p.jamm)]~]
-::
-++  simple-subdesk-jam
-  |=  [=eyre-id =beak args=(list [k=@t v=@t])]
-  ^-  (list card)
-  =/  jamm  (subdesk-to-mime beak (file-args args)) 
-  %+  give-simple-payload:app:server  eyre-id
-  :_  [~ q.jamm]
-  :-  200
-  :~  'content-type'^(en-mite:mimes:html p.jamm)
-      :-  'Content-Disposition'
-      %-  crip
-      "inline; filename=\"{(trip q.beak)}-subset.jam\""
-  ==
 --
 ::
 =|  state-0
@@ -159,10 +16,12 @@
 %-  agent:dbug
 %+  verb  |
 ^-  agent:gall
+=<
 |_  =bowl:gall
 +*  this  .
     def   ~(. (default-agent this %|) bowl)
-    hc    ~(. j [our now]:bowl)
+    jc    ~(. j [our now]:bowl)
+    hc    ~(. +> bowl)
 ::
 ++  on-init
   ^-  (quip card _this)
@@ -193,14 +52,14 @@
       =/  =desk  i.t.t.t.site
       :_  this
       ?~  args
-        (simple-desk-jam eyre-id byk.bowl(q desk))
-      (simple-subdesk-jam eyre-id byk.bowl(q desk) args)
+        (simple-desk-jam:hc eyre-id desk)
+      (simple-subdesk-jam:hc eyre-id desk args)
     :: clear staged on index visit
     ::
     =?  staged  ?=([%apps %jam-desk ~] site)  ~
     :: use rudder to serve pages
     ::
-    =/  pages  (make-pages byk.bowl)
+    =/  pages  make-pages:hc
     =;  out=(quip card _+.state)
       [-.out this(+.state +.out)]
     %.  [bowl !<(order:rudder vase) +.state]
@@ -233,7 +92,7 @@
       ?>  ?=(^ dest)
       ?>  ?=(%n mode.u.dest)
       ?>  ?=(^ staged)  =,  u.staged
-      ?<  (~(has in (desks byk.bowl)) desk.u.dest)
+      ?<  (~(has in desks:hc) desk.u.dest)
       :_(this [(new-desk-card desk.u.dest stage-mapp)]~)
       ::
         %add-files
@@ -241,9 +100,9 @@
       ?>  ?=(^ dest)
       ?>  ?=(%m mode.u.dest)
       ?>  ?=(^ staged)  =,  u.staged
-      ?>  (~(has in (desks byk.bowl)) desk.u.dest)
+      ?>  (~(has in desks:hc) desk.u.dest)
       =/  src=(set path)  ~(key by stage-mapp)
-      =/  snk=(set path)  (desk-files byk.bowl(q desk.u.dest))
+      =/  snk=(set path)  (desk-files:hc desk.u.dest)
       =/  conflict=(set path)  (~(int in src) snk)
       :: this overwrites conflicting filepaths
       :_  this
@@ -278,10 +137,145 @@
     =/  =jam  !<(jam result)
     :_  this
     :~  :*  %pass  /  %agent  [our dap]:bowl  %poke 
-            %jam-desk-action  !>(stage-mapp+(cue-and-clam:hc jam))
+            %jam-desk-action  !>(stage-mapp+(cue-and-clam:jc jam))
     ==  ==
   ==
 ::
 ++  on-leave  on-leave:def
 ++  on-fail   on-fail:def
+--
+|_  =bowl:gall
+++  sour  (scot %p our.bowl)
+++  snow  (scot %da now.bowl)
+++  jam-mark  %jam-desk-0
+++  desks  .^((set desk) %cd /[sour]/base/[snow])
+::
+:: ++  jam-to-mime
+::   |=  =beak
+::   .^  $-(@ mime)  %cf
+::     (weld (en-beam beak(q %base) ~) /jam/mime)
+::   ==
+::
+++  new-desk-card
+  |=  [=desk =mapp]
+  ^-  card
+  [%pass /new-desk/[desk] %arvo (new-desk:cloy desk ~ mapp)]
+::
+++  add-files-card
+  |=  [=mapp to=desk conflict=(set path)]
+  ^-  card
+  =;  =soba:clay
+    [%pass /put-files/[to] %arvo %c %info to %& soba]
+  %+  turn  ~(tap by mapp)
+  |=  [=path =mark cont=*]
+  ?:  (~(has in conflict) path)
+    [path %mut mark !>(cont)]
+  [path %ins mark !>(cont)]
+::
+++  run-url-thread-card
+  |=  url=@t
+  ^-  card
+  :*  %pass  /url-thread  %arvo  %k  %fard
+      %jam-desk  %jam-desk-url  %noun
+      !>((some url))
+  ==
+::
+++  desk-files
+  |=  =desk
+  ^-  (set path)
+  %-  ~(gas in *(set path))
+  .^((list path) %ct /[sour]/[desk]/[snow])
+::
+++  page-paths
+  ^-  (list path)
+  =/  subsets
+    (turn ~(tap in desks) |=(=@ta [%subset ta ~]))
+  %+  welp
+    subsets
+  ~[/index /staged /confirm /download]
+::
+++  make-pages
+  %-  ~(gas by *(map @ta (page:rudder data action)))
+  (turn page-paths make-page:webui)
+::
+++  en-mapp
+  |=  [=desk files=(list path)]
+::  ^-  mapp
+::  |^
+::  (~(gas by *mapp) (turn files mage))
+::  ++  mage
+::    |=  file=path
+::    ^-  (pair path page:clay)
+::    :-  file
+::    ^-  page:clay
+::    :-  (rear file)
+::    ~|  [%missing-source-file beak file]
+::    .^(* %cx (weld (en-beam beak ~) file))
+::  --
+  ^-  mapp
+  =+  .^(=dome:clay %cv /[sour]/[desk]/[snow])
+  =/  commit=@ud  ud:.^(cass:clay %cw /[sour]/[desk]/[snow])
+  =/  =tako:clay  (~(got by hit.dome) commit)
+  =+  .^(=yaki:clay %cs /[sour]/base/[snow]/yaki/(scot %uv tako))
+  =+  .^(=rang:clay %cx /[sour]//[snow]/rang)
+  %-  ~(gas by *mapp)
+  %+  turn  files
+  |=  file=path
+  ^-  (pair path page:clay)
+  ~|  [%missing-source-file /[sour]/[desk]/[snow] file]
+  :-  file
+  (~(got by lat.rang) (~(got by q.yaki) file))
+::
+++  en-mapp-full
+  |=(=desk (en-mapp desk ~(tap in (desk-files desk))))
+::
+++  en-mapp-part
+  |=  [=desk files=(list path)]
+  %+  en-mapp  desk
+  %+  murn  files
+  |=  file=path
+  ?.((~(has in (desk-files desk)) file) ~ (some file))
+::
+++  desk-to-mime
+  |=  =desk
+  ^-  mime
+  %-  jam-to-mime
+  %-  jam  ^-  (cask)
+  [jam-mark desk (en-mapp-full desk)]
+::
+++  file-args
+  |=  args=(list [k=@t v=@t])
+  ^-  (list path)
+  %+  turn  args
+  |=  [k=@t v=@t]
+  ^-  path
+  +:(rash k stap)
+::
+++  subdesk-to-mime
+  |=  [=desk files=(list path)]
+  ^-  mime
+  %-  jam-to-mime
+  %-  jam  ^-  (cask)
+  [jam-mark desk (en-mapp-part desk files)]
+::
+++  simple-desk-jam
+  |=  [=eyre-id =desk]
+  ^-  (list card)
+  =/  jamm  (desk-to-mime desk)
+  %+  give-simple-payload:app:server  eyre-id
+  :_  [~ q.jamm]
+  [200 ['content-type'^(en-mite:mimes:html p.jamm)]~]
+::
+++  simple-subdesk-jam
+  |=  [=eyre-id =desk args=(list [k=@t v=@t])]
+  ^-  (list card)
+  =/  jamm  (subdesk-to-mime desk (file-args args)) 
+  %+  give-simple-payload:app:server  eyre-id
+  :_  [~ q.jamm]
+  :-  200
+  :~  'content-type'^(en-mite:mimes:html p.jamm)
+      :-  'Content-Disposition'
+      %-  crip
+      "inline; filename=\"{(trip desk)}-subset.jam\""
+  ==
 --
