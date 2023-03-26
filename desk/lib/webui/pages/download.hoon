@@ -1,12 +1,12 @@
-/-  *jam-desk
-/+  sty=webui-styles, h=jam-desk
+/-  *deskjam
+/+  sty=webui-styles, h=deskjam
 |_  [=bowl:gall data]
 +*  hc  ~(. h [our now]:bowl)
 ++  page
   ^-  manx
   ;hmtl
     ;head
-      ;title:"%jam-desk"
+      ;title:"%deskjam"
       ;meta(charset "utf-8");
       ;meta
         =name     "viewport"
@@ -14,7 +14,7 @@
       ;style:"{(trip global:sty)}"
     ==
     ;body
-      ;a/"/apps/jam-desk": uploads page
+      ;a/"/apps/deskjam": uploads page
       ;br;
       ;*  download-jamfile
     ==
@@ -33,11 +33,11 @@
             |=  =desk
             ;tr
               ;td
-                ;a/"/apps/jam-desk/subset-{(trip desk)}": {(trip desk)}
+                ;a/"/apps/deskjam/subset-{(trip desk)}": {(trip desk)}
               ==
               ;td(width "18");
               ;td
-                ;a/"/apps/jam-desk/download/{(trip desk)}"
+                ;a/"/apps/deskjam/download/{(trip desk)}"
                   =id  "download"
                   =download  "{(trip desk)}.deskjam"
                   =title  "download this file"

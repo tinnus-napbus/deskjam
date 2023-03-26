@@ -1,6 +1,6 @@
-/-  *jam-desk
+/-  *deskjam
 /+  sty=webui-styles, img=webui-images,
-    h=jam-desk
+    h=deskjam
 |_  [=bowl:gall data]
 +*  hc  ~(. h [our now]:bowl)
     mapp  ?~(staged ~ stage-mapp.u.staged)
@@ -8,7 +8,7 @@
   ^-  manx
   ;hmtl
     ;head
-      ;title:"%jam-desk"
+      ;title:"%deskjam"
       ;meta(charset "utf-8");
       ;meta
         =name     "viewport"
@@ -16,7 +16,7 @@
       ;style:"{(trip global:sty)}"
     ==
     ;body
-      ;a/"/apps/jam-desk/download": downloads page
+      ;a/"/apps/deskjam/download": downloads page
       ;br;
       ;*  upload-jamfile
     ==

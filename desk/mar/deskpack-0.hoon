@@ -1,4 +1,4 @@
-/-  *jam-desk
+/-  *deskjam
 =,  mimes:html
 |_  dp=deskpack
 ++  grow

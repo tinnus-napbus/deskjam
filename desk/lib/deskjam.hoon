@@ -1,4 +1,4 @@
-/-  *jam-desk
+/-  *deskjam
 /+  multipart
 |_  [our=ship now=time]
 ++  sour  (scot %p our)

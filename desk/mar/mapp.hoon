@@ -1,4 +1,4 @@
-/-  *jam-desk
+/-  *deskjam
 ::
 |_  =mapp
 ++  grad  %noun

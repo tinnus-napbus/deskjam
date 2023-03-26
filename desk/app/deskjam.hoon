@@ -1,10 +1,10 @@
-/-  *jam-desk
+/-  *deskjam
 /+  webui, rudder, server, dbug, verb, default-agent,
-    j=jam-desk
+    j=deskjam
 :: import to force compilation during development
 /=  dj-  /mar/deskjam
 /=  dp-  /mar/deskpack-0
-/=  jt-  /ted/jam-desk-url
+/=  jt-  /ted/deskjam-url
 ::
 /$  deskpack-0-to-mime  %deskpack-0  %mime
 /$  deskjam-to-deskpack-0  %deskjam  %deskpack-0
@@ -52,15 +52,15 @@
       (parse-request-line:server url.request.inbound-request)
     :: download the jam file of a desk
     ::
-    ?:  ?=([%apps %jam-desk %download @ta ~] site)
+    ?:  ?=([%apps %deskjam %download @ta ~] site)
       =/  =desk  i.t.t.t.site
       :_  this
       ?~  args
-        (simple-desk-jam:hc eyre-id desk)
-      (simple-subdesk-jam:hc eyre-id desk args)
+        (simple-deskjam:hc eyre-id desk)
+      (simple-sub-deskjam:hc eyre-id desk args)
     :: clear staged on index visit
     ::
-    =?  staged  ?=([%apps %jam-desk ~] site)  ~
+    =?  staged  ?=([%apps %deskjam ~] site)  ~
     :: use rudder to serve pages
     ::
     =/  pages  make-pages:hc
@@ -75,11 +75,11 @@
       ^-  $@  brief:rudder
           [brief:rudder (list card) _+.state]
       =^  caz  this
-        (on-poke %jam-desk-action !>(axn))
+        (on-poke %deskjam-action !>(axn))
       ['Processed succesfully.' caz +.state]
     ==
     ::
-      %jam-desk-action
+      %deskjam-action
     =/  axn  !<(action vase)
     ?-    -.axn
         %stage-mapp
@@ -141,7 +141,7 @@
     =/  =jam  !<(jam result)
     :_  this
     :~  :*  %pass  /  %agent  [our dap]:bowl  %poke 
-            %jam-desk-action  !>([%stage-mapp (deskjam-to-deskpack-0 jam)])
+            %deskjam-action  !>([%stage-mapp (deskjam-to-deskpack-0 jam)])
     ==  ==
   ==
 ::
@@ -173,7 +173,7 @@
   |=  url=@t
   ^-  card
   :*  %pass  /url-thread  %arvo  %k  %fard
-      %jam-desk  %jam-desk-url  %noun
+      %deskjam  %deskjam-url  %noun
       !>((some url))
   ==
 ::
@@ -241,7 +241,7 @@
   %-  deskpack-0-to-mime
   [desk (en-mapp-part desk files)]
 ::
-++  simple-desk-jam
+++  simple-deskjam
   |=  [=eyre-id =desk]
   ^-  (list card)
   =/  jamm  (desk-to-mime desk)
@@ -249,7 +249,7 @@
   :_  [~ q.jamm]
   [200 ['content-type'^(en-mite:mimes:html p.jamm)]~]
 ::
-++  simple-subdesk-jam
+++  simple-sub-deskjam
   |=  [=eyre-id =desk args=(list [k=@t v=@t])]
   ^-  (list card)
   =/  jamm  (subdesk-to-mime desk (file-args args)) 
@@ -259,6 +259,6 @@
   :~  'content-type'^(en-mite:mimes:html p.jamm)
       :-  'Content-Disposition'
       %-  crip
-      "inline; filename=\"{(trip desk)}-subset.jam\""
+      "inline; filename=\"{(trip desk)}-subset.deskjam\""
   ==
 --

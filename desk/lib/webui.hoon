@@ -1,5 +1,5 @@
-/-  *jam-desk
-/+  rudder, multipart, w=webui-pages, h=jam-desk
+/-  *deskjam
+/+  rudder, multipart, w=webui-pages, h=deskjam
 /$  deskjam-to-deskpack-0  %deskjam  %deskpack-0
 |%
 ++  path-to-term

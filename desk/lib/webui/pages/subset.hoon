@@ -1,13 +1,13 @@
-/-  *jam-desk
+/-  *deskjam
 /+  sty=webui-styles, scr=webui-scripts, img=webui-images,
-    h=jam-desk
+    h=deskjam
 |_  [=bowl:gall =desk]
 +*  hc  ~(. h [our now]:bowl)
 ++  page
   ^-  manx
   ;hmtl
     ;head
-      ;title:"%jam-desk"
+      ;title:"%deskjam"
       ;meta(charset "utf-8");
       ;meta
         =name     "viewport"
@@ -21,7 +21,7 @@
   ==
 ++  display-desk
   ^-  manx
-  ;form(method "get", action "/apps/jam-desk/download/{(trip desk)}")
+  ;form(method "get", action "/apps/deskjam/download/{(trip desk)}")
     ;table
       ;tr
         ;td

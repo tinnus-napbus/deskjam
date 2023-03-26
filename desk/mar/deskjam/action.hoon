@@ -1,4 +1,4 @@
-/-  *jam-desk
+/-  *deskjam
 ::
 |_  axn=action
 ++  grad  %noun
