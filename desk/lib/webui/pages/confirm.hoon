@@ -19,6 +19,8 @@
       ;style:"{(trip global:sty)}"
     ==
     ;body
+      ;a/"/apps/deskjam": index
+      ;br;
       ;h1: confirm upload
       ;+  info
     ==

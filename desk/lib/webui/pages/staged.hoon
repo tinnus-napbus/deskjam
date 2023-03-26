@@ -17,6 +17,8 @@
       ;style:"{(trip global:sty)}"
     ==
     ;body
+      ;a/"/apps/deskjam": index
+      ;br;
       ;table
         ;tr
           ;td

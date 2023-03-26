@@ -16,6 +16,8 @@
       ;script:"{(trip subset:scr)}"
     ==
     ;body
+      ;a/"/apps/deskjam": index
+      ;br;
       ;+  display-desk
     ==
   ==
