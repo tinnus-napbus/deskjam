@@ -78,7 +78,12 @@
         files in that desk.
       ==
       ;table
-        ;*  %+  turn  ~(tap in desks:hc)
+        ;*  :-  ;tr
+                  ;th:"desk subset"
+                  ;th(width "18");
+                  ;th:"full desk"
+                ==
+            %+  turn  ~(tap in desks:hc)
             |=  =desk
             ;tr
               ;td
