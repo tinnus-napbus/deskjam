@@ -190,7 +190,7 @@
     (turn ~(tap in desks) |=(=@ta [%subset ta ~]))
   %+  welp
     subsets
-  ~[/index /staged /confirm /download]
+  ~[/index /staged /confirm]
 ::
 ++  make-pages
   %-  ~(gas by *(map @ta (page:rudder data action)))
