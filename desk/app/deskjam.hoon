@@ -46,7 +46,7 @@
   ^-  (quip card _this)
   ?+    mark  (on-poke:def mark vase)
       %handle-http-request
-    ::
+    ?>  =(src our):bowl
     =+  !<([=eyre-id =inbound-request:eyre] vase)
     =/  ,request-line:server
       (parse-request-line:server url.request.inbound-request)
@@ -81,6 +81,7 @@
     ::
       %deskjam-action
     =/  axn  !<(action vase)
+    ?>  =(src our):bowl
     ?-    -.axn
         %stage-mapp
       `this(staged [~ now.bowl [desk mapp]:axn])
