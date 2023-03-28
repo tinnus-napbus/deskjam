@@ -17,7 +17,6 @@
     [%index ~]       index
     [%staged ~]      staged
     [%confirm ~]     confirm
-    [%download ~]    download
     [%subset @ ~]    (subset i.t.paz)
   ==
 ::
@@ -113,23 +112,6 @@
         ==
     ^-  reply:rudder
     [%page ~(page confirm:w [bowl data])]
-  --
-::
-++  download
-  |_  [=bowl:gall * =data]
-  +*  hc  ~(. h [our now]:bowl)
-  ++  argue
-    |=  [headers=header-list:http body=(unit octs)]
-    `$@(brief:rudder action)`~
-  ::
-  ++  final  (alert:rudder (spat /apps/[dap.bowl]) build)
-  ::
-  ++  build
-    |=  $:  arg=(list [k=@t v=@t])
-            msg=(unit [o=? =@t])
-        ==
-    ^-  reply:rudder
-    [%page ~(page download:w [bowl data])]
   --
 ::
 ++  subset
