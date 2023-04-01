@@ -48,6 +48,8 @@
       %handle-http-request
     ?>  =(src our):bowl
     =+  !<([=eyre-id =inbound-request:eyre] vase)
+    ?.  authenticated.inbound-request
+      [(login-redirect:hc eyre-id) this]
     =/  ,request-line:server
       (parse-request-line:server url.request.inbound-request)
     :: download the jam file of a desk
@@ -264,4 +266,10 @@
       %-  crip
       "attachment; filename=\"{(trip desk)}-subset.deskjam\""
   ==
+::
+++  login-redirect
+  |=  =eyre-id
+  ^-  (list card)
+  %+  give-simple-payload:app:server  eyre-id
+  [[307 ['Location' '/~/login?redirect=%2Fapps%2Fdeskjam'] ~] ~]
 --
