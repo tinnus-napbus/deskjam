@@ -1,10 +1,6 @@
 /-  *deskjam
 /+  webui, rudder, server, dbug, verb, default-agent,
     j=deskjam
-:: import to force compilation during development
-/=  dj-  /mar/deskjam
-/=  dp-  /mar/deskpack-0
-/=  jt-  /ted/deskjam-url
 ::
 /$  deskpack-0-to-mime  %deskpack-0  %mime
 /$  deskjam-to-deskpack-0  %deskjam  %deskpack-0
