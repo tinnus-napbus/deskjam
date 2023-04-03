@@ -25,74 +25,40 @@
 ::
 ++  desk-files  |=(=desk .^((list path) %ct /[sour]/[desk]/[snow]))
 ::
-++  desk-axal
+++  desk-to-hierarchy
   |=  =desk
-  ^-  (axal)
-  (get-axal (desk-files desk))
+  ^-  (list [pat=path dir=? dep=@])
+  (files-to-hierarchy (desk-files desk))
 ::
-++  get-axal
-  |=  files=(list path)
-  ^-  (axal)
-  |^  %-  ~(gas of *(axal))
-  %+  turn
-    (turn files fuse-ext)
-  |=(=path [path ~])
-  ++  fuse-ext
-    |=  =path
-    =/  end=^path  (flop (scag 2 (flop path)))
-    =/  nam=tape  (trip (snag 0 end))
-    =/  ext=tape  (trip (snag 1 end))
-    %-  flop
-    :_  (oust [0 2] (flop path))
-    (crip :(weld nam "/" ext))
-  --
+++  file-to-ancestors
+  |=  pat=path
+  ^-  (list path)
+  (path-to-ancestors pat |)
 ::
-++  get-desk-hier
-  |=  =desk
-  ^-  (list [n=@ f=? d=(list path) p=path])
-  (get-hier desk (desk-files desk))
-::
-++  get-hier
-  |=  [name=term files=(list path)]
-  ^-  (list [n=@ f=? d=(list path) p=path])
-  =/  dax=(axal)  (get-axal files)
-  =/  fat=(axal)  dax
-  =|  n=@
-  =/  pat=path  [name ~]
-  |-  ^-  (list [@ ? (list path) path])
-  =/  pax  :: paths of all contents
-    %+  turn
-      ~(tap of fat)
-    |=([p=path *] (weld (flop pat) p))
-  =/  sed  [[n f=| pax (flop pat)] ~]
-  ?:  =(0 ~(wyt by dir.fat))  sed
-  =/  kids  ~(tap by dir.fat)
-  %+  welp  sed(f &)
-  =|  out=(list [@ ? (list path) path])
+++  path-to-ancestors
+  |=  [pat=path dir=?]
+  ^-  (list path)
+  =.  pat  (flop pat)
+  =?  pat  !dir  ?>(?=([@ @ *] pat) t.t.pat)
+  =|  out=(list path)
   |-
-  ?~  kids  out
-  %=  $
-    kids  t.kids
-    out   %+  weld  out
-          %=  ^$
-            n    +(n)
-            pat  [p.i.kids pat]
-            fat  q.i.kids
-          ==
-  ==
-::
-++  path-to-tape
-  |=  =path
-  ^-  tape
-  (zing (join "-" (turn path trip)))
-::
-++  path-to-ancs
-  |=  =path
-  ^-  (list ^path)
-  (snip (turn (gulf 1 (lent path)) (curr scag path)))
+  ?~  pat  [/ out]
+  $(pat t.pat, out [(flop pat) out])
 ::
 ++  path-to-classes
-  |=  =path
+  |=  [pat=path dir=?]
   ^-  tape
-  (zing (join " " (turn (path-to-ancs path) path-to-tape)))
+  (zing (join " " (turn (path-to-ancestors pat dir) spud)))
+::
+++  files-to-hierarchy
+  |=  pax=(list path)
+  ^-  (list [pat=path dir=? dep=@])
+  =|  out=(set [pat=path dir=? dep=@])
+  |-
+  ?~  pax  (sort ~(tap in out) aor)
+  =/  new=(list [pat=path dir=? dep=@])
+    :-  [i.pax | (sub (lent i.pax) 1)]
+    %+  turn  (file-to-ancestors i.pax)
+    |=(p=path [p & (lent p)])
+  $(pax t.pax, out (~(gas in out) new))
 --

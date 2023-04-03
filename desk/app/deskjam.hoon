@@ -1,10 +1,6 @@
 /-  *deskjam
 /+  webui, rudder, server, dbug, verb, default-agent,
     j=deskjam
-:: import to force compilation during development
-/=  dj-  /mar/deskjam
-/=  dp-  /mar/deskpack-0
-/=  jt-  /ted/deskjam-url
 ::
 /$  deskpack-0-to-mime  %deskpack-0  %mime
 /$  deskjam-to-deskpack-0  %deskjam  %deskpack-0
@@ -48,35 +44,45 @@
       %handle-http-request
     ?>  =(src our):bowl
     =+  !<([=eyre-id =inbound-request:eyre] vase)
+    ?.  authenticated.inbound-request
+      [(login-redirect:hc eyre-id) this]
     =/  ,request-line:server
       (parse-request-line:server url.request.inbound-request)
     :: download the jam file of a desk
     ::
-    ?:  ?=([%apps %deskjam %download @ta ~] site)
-      =/  =desk  i.t.t.t.site
+    ?:  ?=([%apps %deskjam %download ~] site)
+      =/  [=desk files=(list path)]
+        %+  roll  args
+        |=  [[k=@t v=@t] [=desk files=(list path)]]
+        ?+  k  [desk files]
+          %desk  [(need ((sand %tas) v)) files]
+          %path  ?~  file=(rush v stap)
+                   [desk files]
+                 [desk [u.file files]]
+        ==
       :_  this
-      ?~  args
+      ?~  files
         (simple-deskjam:hc eyre-id desk)
-      (simple-sub-deskjam:hc eyre-id desk args)
+      (simple-sub-deskjam:hc eyre-id desk files)
     :: clear staged on index visit
     ::
     =?  staged  ?=([%apps %deskjam ~] site)  ~
     :: use rudder to serve pages
     ::
     =/  pages  make-pages:hc
-    =;  out=(quip card _+.state)
+    =;  out=(quip card data)
       [-.out this(+.state +.out)]
-    %.  [bowl !<(order:rudder vase) +.state]
-    %:  (steer:rudder _+.state action)
+    %.  [bowl [eyre-id inbound-request] staged dest]
+    %:  (steer:rudder data action)
       pages
       (point:rudder /apps/[dap.bowl] & ~(key by pages))
-      (fours:rudder +.state)
+      (fours:rudder staged dest)
       |=  axn=action
       ^-  $@  brief:rudder
-          [brief:rudder (list card) _+.state]
+          [brief:rudder (list card) data]
       =^  caz  this
         (on-poke %deskjam-action !>(axn))
-      ['Processed succesfully.' caz +.state]
+      ['Processed succesfully.' caz staged dest]
     ==
     ::
       %deskjam-action
@@ -186,11 +192,7 @@
 ::
 ++  page-paths
   ^-  (list path)
-  =/  subsets
-    (turn ~(tap in desks) |=(=@ta [%subset ta ~]))
-  %+  welp
-    subsets
-  ~[/index /staged /confirm]
+  ~[/index /staged /confirm /subset]
 ::
 ++  make-pages
   %-  ~(gas by *(map @ta (page:rudder data action)))
@@ -217,24 +219,17 @@
 ::
 ++  en-mapp-part
   |=  [=desk files=(list path)]
+  =/  desk-files=(set path)  (desk-files desk)
   %+  en-mapp  desk
   %+  murn  files
   |=  file=path
-  ?.((~(has in (desk-files desk)) file) ~ (some file))
+  ?.((~(has in desk-files) file) ~ (some file))
 ::
 ++  desk-to-mime
   |=  =desk
   ^-  mime
   %-  deskpack-0-to-mime
   [desk (en-mapp-full desk)]
-::
-++  file-args
-  |=  args=(list [k=@t v=@t])
-  ^-  (list path)
-  %+  turn  args
-  |=  [k=@t v=@t]
-  ^-  path
-  +:(rash k stap)
 ::
 ++  subdesk-to-mime
   |=  [=desk files=(list path)]
@@ -248,18 +243,29 @@
   =/  jamm  (desk-to-mime desk)
   %+  give-simple-payload:app:server  eyre-id
   :_  [~ q.jamm]
-  [200 ['content-type'^(en-mite:mimes:html p.jamm)]~]
+  :-  200
+  :~  ['content-type' (en-mite:mimes:html p.jamm)]
+      :-  'Content-Disposition'
+      %-  crip
+      "attachment; filename=\"{(trip desk)}.deskjam\""
+  ==
 ::
 ++  simple-sub-deskjam
-  |=  [=eyre-id =desk args=(list [k=@t v=@t])]
+  |=  [=eyre-id =desk files=(list path)]
   ^-  (list card)
-  =/  jamm  (subdesk-to-mime desk (file-args args)) 
+  =/  jamm  (subdesk-to-mime desk files) 
   %+  give-simple-payload:app:server  eyre-id
   :_  [~ q.jamm]
   :-  200
-  :~  'content-type'^(en-mite:mimes:html p.jamm)
+  :~  ['content-type' (en-mite:mimes:html p.jamm)]
       :-  'Content-Disposition'
       %-  crip
-      "inline; filename=\"{(trip desk)}-subset.deskjam\""
+      "attachment; filename=\"{(trip desk)}-subset.deskjam\""
   ==
+::
+++  login-redirect
+  |=  =eyre-id
+  ^-  (list card)
+  %+  give-simple-payload:app:server  eyre-id
+  [[307 ['Location' '/~/login?redirect=%2Fapps%2Fdeskjam'] ~] ~]
 --

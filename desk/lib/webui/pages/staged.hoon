@@ -14,10 +14,10 @@
       ;meta
         =name     "viewport"
         =content  "width=device-width, initial-scale=1";
-      ;style:"{(trip global:sty)}"
+      ;style: {global:sty}
     ==
     ;body
-      ;a/"/apps/deskjam": index
+      ;a/"/apps/deskjam": return home
       ;br;
       ;table
         ;tr
@@ -69,22 +69,27 @@
 ++  folder-hierarchy
   ^-  marl
   %+  turn
-    (get-hier:hc desk ~(tap in ~(key by mapp)))
-  |=  [n=@ f=? d=(list path) p=path]
+    (files-to-hierarchy:hc ~(tap in ~(key by mapp)))
+  |=  [pat=path dir=? dep=@]
   ^-  manx
   ;tr
     ;td
       ;table
         ;tr
-          ;td(width (scow %ud (mul 20 n)));
+          ;td(width (a-co:co (mul 20 dep)));
           ;td
-            ;+  ?.  =(0 n)
-                  (resource-icon:img f)
+            ;+  ?.  =(0 dep)
+                  (resource-icon:img dir)
                 ;p
                   ;strong: %
                 ==
           ==
-          ;td: {(trip (rear p))}
+          ;td
+            ;+  ?:  =(0 dep)  ;/  (trip desk)
+                ?:  dir  ;/  (trip (rear pat))
+                ;/  =-  ?>  ?=(^ fil)  t.fil
+                    fil=(spud (slag (sub (lent pat) 2) pat))
+          ==
         ==
       ==
     ==

@@ -14,10 +14,10 @@
   ^-  (page:rudder data action)
   ~|  paz
   ?+    paz  !!
-    [%index ~]       index
-    [%staged ~]      staged
-    [%confirm ~]     confirm
-    [%subset @ ~]    (subset i.t.paz)
+    [%index ~]    index
+    [%staged ~]   staged
+    [%confirm ~]  confirm
+    [%subset ~]   subset
   ==
 ::
 ++  index
@@ -30,6 +30,7 @@
     ?~  parts
       =/  args=(map @t @t)
         ?~(body ~ (frisk:rudder q.u.body))
+
       ?~  url=(~(get by args) 'url')  ~
       [%url-thread u.url]
     =/  jam=(unit jam)
@@ -115,7 +116,6 @@
   --
 ::
 ++  subset
-  |=  dex=desk
   |_  [=bowl:gall * data]
   +*  hc  ~(. h [our now]:bowl)
   ++  argue
@@ -135,6 +135,10 @@
             msg=(unit [o=? =@t])
         ==
     ^-  reply:rudder
+    =/  dex=desk
+      %-  need
+      %-  (sand %tas)
+      (~(got by (~(gas by *(map @t @t)) arg)) 'desk')
     [%page ~(page subset:w [bowl dex])]
   --
 --

@@ -12,25 +12,24 @@
       ;meta
         =name     "viewport"
         =content  "width=device-width, initial-scale=1";
-      ;style:"{(trip global:sty)}"
-      ;script:"{(trip subset:scr)}"
+      ;style: {global:sty}
+      ;script: {subset:scr}
     ==
     ;body
-      ;a/"/apps/deskjam": index
+      ;a/"/apps/deskjam": return home
       ;br;
       ;+  display-desk
     ==
   ==
 ++  display-desk
   ^-  manx
-  ;form(method "get", action "/apps/deskjam/download/{(trip desk)}")
+  ;form(method "get", action "/apps/deskjam/download")
+    ;input(type "hidden", name "desk", value (trip desk));
     ;table
       ;tr
+        ;td: Select files and folders to jam.
         ;td
-          Select files and folders to jam.
-        ==
-        ;td
-          ;button(type "submit", download "{(trip desk)}.deskjam"): download
+          ;input(type "submit", value "submit");
         ==
       ==
       ;*  folder-hierarchy
@@ -38,30 +37,42 @@
   ==
 ++  folder-hierarchy
   ^-  marl
-  %+  turn  (get-desk-hier:hc desk)
-  |=  [n=@ f=? d=(list path) p=path]
+  %+  turn  (desk-to-hierarchy:hc desk)
+  |=  [pat=path dir=? dep=@]
+  =/  tpath=tape  (spud pat)
   ^-  manx
   ;tr
     ;td
       ;table
         ;tr
           ;td
-            ;input
-              =id        "{(path-to-tape:hc p)}"
-              =type      "checkbox"
-              =name      "{(spud p)}"
-              =class     "{(path-to-classes:hc p)}"
-              =onchange  "selectSubfiles(\"{(path-to-tape:hc p)}\")";
+            ;+  ?:  dir
+                  ;input
+                    =id        tpath
+                    =type      "checkbox"
+                    =class     (path-to-classes:hc pat dir)
+                    =onchange  "checkboxDir(\"{tpath}\")";
+                ;input
+                  =id        tpath
+                  =type      "checkbox"
+                  =name      "path"
+                  =value     tpath
+                  =class     (path-to-classes:hc pat dir);
           ==
-          ;td(width (scow %ud (mul 20 n)));
+          ;td(width (a-co:co (mul 20 dep)));
           ;td
-            ;+  ?.  =(0 n)
-                  (resource-icon:img f)
+            ;+  ?.  =(0 dep)
+                  (resource-icon:img dir)
                 ;p
                   ;strong: %
                 ==
           ==
-          ;td: {(trip (rear p))}
+          ;td
+            ;+  ?:  =(0 dep)  ;/  (trip desk)
+                ?:  dir  ;/  (trip (rear pat))
+                ;/  =-  ?>  ?=(^ fil)  t.fil
+                    fil=(spud (slag (sub (lent pat) 2) pat))
+          ==
         ==
       ==
     ==
