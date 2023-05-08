@@ -158,7 +158,7 @@
 |_  =bowl:gall
 ++  sour  (scot %p our.bowl)
 ++  snow  (scot %da now.bowl)
-++  desks  .^((set desk) %cd /[sour]/base/[snow])
+++  desks  .^((set desk) %cd /[sour]//[snow])
 ::
 ++  new-desk-card
   |=  [=desk =mapp]

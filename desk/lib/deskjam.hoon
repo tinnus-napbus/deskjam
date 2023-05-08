@@ -3,7 +3,7 @@
 |_  [our=ship now=time]
 ++  sour  (scot %p our)
 ++  snow  (scot %da now)
-++  desks  .^((set desk) %cd /[sour]/base/[snow])
+++  desks  .^((set desk) %cd /[sour]//[snow])
 :: list to unit
 ::
 ++  lint
