@@ -2,7 +2,7 @@
   title+'Deskjam'
   info+'Upload and download desks in deskjam format directly from your ship.'
   color+0x9c.cfe7
-  version+[0 1 0]
+  version+[0 1 1]
   website+'https://github.com/tinnus-napbus/deskjam'
   license+'MIT'
   base+'deskjam'
