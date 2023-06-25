@@ -1,0 +1,1 @@
+../../../bare-desk/lib/webui/images.hoon

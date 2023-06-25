@@ -1,6 +1,6 @@
 ::  rudder: framework for routing & serving simple web frontends
 ::
-::      v1.0.1: newborn helmsman
+::      v1.0.2: newborn helmsman
 ::
 ::    the primary usage pattern involves your app calling steer:rudder
 ::    with a configuration, then calling the resulting gate with an
@@ -90,17 +90,9 @@
 +$  brief  ?(~ @t)
 ::
 ++  page
-  :: accept data type (?) and a command type
-  |*  [dat=mold cmd=mold] :: accept two molds; this a mold-builder
-  :: a page is a function; we give an example function
-  :: which we make contravariant so it can be passed to other functions
-  :: (iron core)
+  |*  [dat=mold cmd=mold]
   $_  ^|
-  :: accept a bowl and an order (id-ed inbound request) and a piece of data
   |_  [bowl:gall order dat]
-  :: this is a core with three arms
-  :: takes a list of key-value (?) pairs and a unit [? @t] and returns a
-  :: reply
   ++  build  |~([(list [k=@t v=@t]) (unit [? @t])] *reply)
   ++  argue  |~([header-list:http (unit octs)] *$@(brief cmd))
   ++  final  |~([success=? msg=brief] *reply)
@@ -180,6 +172,7 @@
         =?  act  ?=(~ act)  'failed to process request'
         (spout id (paint (final:page | res)))
       :_  +>.res
+      =.  +<+>.page  +>.res
       (weld (spout id (paint (final:page & -.res))) +<.res)
     ==
   --
