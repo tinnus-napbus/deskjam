@@ -201,9 +201,9 @@
 ++  en-mapp
   |=  [=desk files=(list path)]
   ^-  mapp
-  =+  .^(=dome:clay %cv /[sour]/[desk]/[snow])
+  =+  .^(=domo:clay %cv /[sour]/[desk]/[snow])
   =/  commit=@ud  ud:.^(cass:clay %cw /[sour]/[desk]/[snow])
-  =/  =tako:clay  (~(got by hit.dome) commit)
+  =/  =tako:clay  (~(got by hit.domo) commit)
   =+  .^(=yaki:clay %cs /[sour]/base/[snow]/yaki/(scot %uv tako))
   =+  .^(=rang:clay %cx /[sour]//[snow]/rang)
   %-  ~(gas by *mapp)
