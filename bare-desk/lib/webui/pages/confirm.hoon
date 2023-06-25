@@ -30,7 +30,7 @@
   ^-  manx
   =/  desk   ?>(?=(^ dest) desk.u.dest)
   =/  mode   ?>(?=(^ dest) mode.u.dest)
-  =/  desks  .^((set ^desk) %cd /[sour]/base/[snow])
+  =/  desks  .^((set ^desk) %cd /[sour]//[snow])
   ?-    mode
       %m
     =/  src=(set path)  ~(key by mapp)
