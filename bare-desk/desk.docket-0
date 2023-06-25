@@ -3,6 +3,7 @@
   info+'Upload and download desks in deskjam format directly from your ship.'
   color+0x9c.cfe7
   version+[0 1 1]
+  image+'https://m.tinnus-napbus.xyz/pub/deskjam.svg'
   website+'https://github.com/tinnus-napbus/deskjam'
   license+'MIT'
   base+'deskjam'
